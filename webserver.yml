@@ -1,0 +1,32 @@
+--- # YAML file install and configure webserver
+
+- name: Installing and Configuring apache webserver
+  hosts: all
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - name: Install apache packages
+      yum:
+        name: httpd
+        state: present
+
+    - name: Copy index.html file
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+
+    - name: Ensure apache service httpd is running
+      service:
+        name: httpd
+        state: started
+
+  # - name: Open port 80 for http access
+  #   firewalld:
+  #     service: http
+  #     permanent: true
+  #     state: enabled
+#  - name: Restart the firewalld service to load in the firewall changes
+#    service:
+#      name: firewalld
+#      state: restarted
