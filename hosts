@@ -2,4 +2,4 @@
 #ansible_python_interpreter=/usr/bin/python3
 
 [linux]
-172.31.81.134
+10.20.30.40
